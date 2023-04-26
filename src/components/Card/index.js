@@ -35,9 +35,10 @@ function Card({ id, onFavourite, title, imageUrl, price, onPlus, favorited, adde
                 <rect x="117" y="226" rx="5" ry="5" width="32" height="32" />
             </ContentLoader>) : (
                 <>
-                    <div className={styles.favourite} onClick={onClickFavorite}>
+
+                    {onFavourite && (<div className={styles.favourite} onClick={onClickFavorite}>
                         <img src={isFavorite ? "img/liked.svg" : "/img/unliked.svg"} alt="Unliked" />
-                    </div>
+                    </div>)}
                     <img width={133} height={112} src={imageUrl} alt="1" />
                     <h5>{title}</h5>
                     <div className="d-flex justify-between align-center">
@@ -45,10 +46,11 @@ function Card({ id, onFavourite, title, imageUrl, price, onPlus, favorited, adde
                             <span>Цена </span>
                             <b>{price} тенге.</b>
                         </div>
+                        {onPlus && (
                         <img
                             className={styles.plus}
                             onClick={onClickPlus}
-                            src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"} alt="Plus" />
+                            src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"} alt="Plus" />)}
                     </div>
                 </>)}
         </div>

@@ -8,6 +8,7 @@ import Favorites from './pages/Favorites';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import AppContext from './context';
+import Orders from './pages/Orders';
 
 
 function App() {
@@ -76,10 +77,11 @@ function App() {
   }
 
   return (
-      <AppContext.Provider value={{cartItems, favorites, items, isItemAdded, onAddToFavorite, setCartOpened, setCartItems}}>
+      <AppContext.Provider value={{cartItems, favorites, items, isItemAdded, onAddToFavorite, setCartOpened, setCartItems, onAddToCart}}>
             <div className="wrapper clear">
-      {cartOpened &&
-        (<Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />)}
+      <div>
+      (<Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} /> opened={cartOpened})
+      </div>
       <Header onClickCart={() => setCartOpened(true)} />
 
       <Route path="/" exact>
@@ -97,6 +99,10 @@ function App() {
 
       <Route path="/favorites" exact>
         <Favorites />
+      </Route>
+
+      <Route path="/orders" exact>
+        <Orders />
       </Route>
 
     </div>
