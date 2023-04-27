@@ -5,8 +5,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
-import { useState } from 'react';
-import { useEffect } from 'react';
+
 import AppContext from './context';
 import Orders from './pages/Orders';
 
@@ -77,11 +76,26 @@ function App() {
   }
 
   return (
-      <AppContext.Provider value={{cartItems, favorites, items, isItemAdded, onAddToFavorite, setCartOpened, setCartItems, onAddToCart}}>
+      <AppContext.Provider 
+      value={{
+        cartItems, 
+        favorites, 
+        items, 
+        isItemAdded, 
+        onAddToFavorite, 
+        setCartOpened, 
+        setCartItems, 
+        onAddToCart
+        }}>
             <div className="wrapper clear">
-      <div>
-      (<Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} /> opened={cartOpened})
-      </div>
+      <Drawer 
+      items={cartItems} 
+      onClose={() => setCartOpened(false)} 
+      onRemove={onRemoveItem} 
+      opened={cartOpened} 
+      /> 
+
+
       <Header onClickCart={() => setCartOpened(true)} />
 
       <Route path="/" exact>

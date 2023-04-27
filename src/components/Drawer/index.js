@@ -1,7 +1,10 @@
 import React from 'react';
+import axios from 'axios';
+
 import Info from "../Info";
 import AppContext from '../../context';
-import axios from 'axios';
+
+import styles from './Drawer.module.scss';
 
 const delay = (ms) => new Promise((resolve) => setTimeout (resolve, ms));
 
@@ -33,8 +36,8 @@ function Drawer({onClose, onRemove, items = [], opened}) {
     };
 
     return (
-        <div className="overlay">
-            <div className="drawer">
+        <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+            <div className={styles.drawer}>
                 <h2 className="d-flex justify-between mb-30">Корзина <img onClick={onClose} className="cu-p removeBtn" src="/img/btn-remove.svg" alt="close" />
                 </h2>
 
